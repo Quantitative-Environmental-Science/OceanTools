@@ -1,20 +1,26 @@
 import numpy as np
 
-def get_last_values(box):
+def get_last_values(*boxes):
     """Returns the final values in all time-varying variables in a box.
 
     Parameters
     ----------
-    box : dict
-        A dictionary containing the box variables.
+    box : dict(s)
+        One or more model boxes.
         
     Returns
     -------
-    dict : containing the last values of all time-varying variables in the box.
+    dict : If a single box is given, returns a dictionary containing the final values of all time-varying attributes. If multiple boxes are given, returns a dictionary containing the final values of all time-varying attributes for each box.
     """
     out = {} 
-    for k, v in box.items():
-        if isinstance(v, np.ndarray):
-            out[k] = v[-1]
-            
+    
+    if len(boxes) == 1:
+        for k, v in boxes.items():
+            if isinstance(v, np.ndarray):
+                out[k] = v[-1]        
+        return out
+    else:
+        for box in boxes:
+            out[box['name']] = get_last_values(box)
+    
     return out
