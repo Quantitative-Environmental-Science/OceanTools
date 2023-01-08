@@ -15,7 +15,7 @@ def get_last_values(*boxes):
     out = {} 
     
     if len(boxes) == 1:
-        for k, v in boxes.items():
+        for k, v in boxes[0].items():
             if isinstance(v, np.ndarray):
                 out[k] = v[-1]        
         return out
