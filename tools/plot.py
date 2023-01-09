@@ -33,8 +33,11 @@ def boxes(time, vars, *boxes, axs=None, label=None, **kwargs):
     for var, ax in zip(vars, axs):
         for box in boxes:            
             if var in box:
-                boxname = box['name'] 
-                ax.plot(time, box[var], color=cdict[boxname], **kwargs)
+                boxname = box['name']
+                try:
+                    ax.plot(time, box[var], color=cdict[boxname], **kwargs)
+                except ValueError:
+                    continue
             
         ax.set_ylabel(var)
 
