@@ -9,12 +9,14 @@ def boxes(time, vars, *boxes, axs=None, label=None, **kwargs):
         An array containing the time axis of the model.
     vars : list of str
         A list containing the names of the variables to plot.
-    axs : list of Axes, optional
-        A list of axes to plot the variables in. If not given, a new figure and axes are created.
     *boxes : dicts
         The boxes that you want to plot. Each box is a dictionary.
+    axs : list of Axes, optional
+        A list of axes to plot the variables in. If not given, a new figure and axes are created.
+    label : str, optional
+        Some custom text to add to the legend.
     **kwargs
-        Keyword arguments to pass to the plot function.
+        Keyword arguments to pass to the pyplot.plot function.
     """
     if axs is None:
         fig, axs = plt.subplots(len(vars), 1, figsize=(8, 1.7 * len(vars)), sharex=True, constrained_layout=True)
@@ -31,8 +33,11 @@ def boxes(time, vars, *boxes, axs=None, label=None, **kwargs):
     for var, ax in zip(vars, axs):
         for box in boxes:            
             if var in box:
-                boxname = box['name'] 
-                ax.plot(time, box[var], color=cdict[boxname], **kwargs)
+                boxname = box['name']
+                try:
+                    ax.plot(time, box[var], color=cdict[boxname], **kwargs)
+                except ValueError:
+                    continue
             
         ax.set_ylabel(var)
 
