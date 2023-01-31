@@ -7,7 +7,7 @@
    viewBox="0 0 207.94 186.772"
    version="1.1"
    id="svg5"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    sodipodi:docname="Ocean_3box.svg"
    inkscape:export-filename="Ocean_3box.png"
    inkscape:export-xdpi="250"
@@ -28,12 +28,12 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.1612435"
-     inkscape:cx="423.25319"
-     inkscape:cy="416.36403"
-     inkscape:window-width="2560"
-     inkscape:window-height="1412"
-     inkscape:window-x="1440"
-     inkscape:window-y="507"
+     inkscape:cx="482.67224"
+     inkscape:cy="417.22516"
+     inkscape:window-width="1440"
+     inkscape:window-height="2500"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer2"
      lock-margins="true"
@@ -496,7 +496,7 @@
          style="font-size:6.35px;text-align:start;text-anchor:start;fill:#7f7f7f;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
          x="185.45566"
          y="75.705246"
-         id="tspan21687">SA: 15%</tspan></text>
+         id="tspan21687">SA: 85%</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:6.35px;line-height:1.2;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#7f7f7f;fill-opacity:1;stroke-width:0.264583"
@@ -512,7 +512,7 @@
          style="font-size:6.35px;fill:#7f7f7f;fill-opacity:1;stroke-width:0.264583"
          x="14.988312"
          y="86.103027"
-         id="tspan21693">SA: 85%</tspan></text>
+         id="tspan21693">SA: 15%</tspan></text>
     <path
        style="display:inline;fill:none;stroke:#7f7f7f;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:1.2, 0.4;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#Stop-9);marker-end:url(#Stop-9)"
        d="M 32.25458,174.25423 H 180.91804"
@@ -608,7 +608,7 @@
          style="text-align:end;text-anchor:end;fill:#58769d;fill-opacity:1;stroke-width:0.264583"
          x="168.70372"
          y="43.434635"
-         id="tspan34163">-E</tspan></text>
+         id="tspan34163">E</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:9.87777px;line-height:1.2;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#58769d;fill-opacity:1;stroke-width:0.264583"
@@ -624,6 +624,6 @@
          style="text-align:start;text-anchor:start;fill:#58769d;fill-opacity:1;stroke-width:0.264583"
          x="42.464966"
          y="43.057823"
-         id="tspan34165">E</tspan></text>
+         id="tspan34165">-E</tspan></text>
   </g>
 </svg>

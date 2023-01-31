@@ -1,13 +1,21 @@
 import numpy as np
 from cbsyst import Csys
 
+
+# global variables
+V_ocean = 1.34e18  # volume of the ocean in m3
+SA_ocean = 358e12  # surface area of the ocean in m2
+fSA_hilat = 0.15  # fraction of ocean surface area in 'high lattitude' box
+
 # variables used to calculate Q
 Q_alpha = 1e-4
 Q_beta = 7e-4
 Q_k = 8.3e17
 
 # salinity balance - the total moles of salt added or removed to the surface boxes
-E = 1.52e14
+Fw = 0.25  # high latitude evaporation minus precipitation in units of m yr-1
+Sref = 35  # reference salinity in units of PSU (unitless)
+E = SA_ocean * fSA_hilat * Fw * Sref  # amount of salt removed from the high latitude box, PSU m3 yr-1
 
 def ocean_model_TS(lolat, hilat, deep, tmax, dt):
     """Run the ocean model for a given time period and return the results for each box.
