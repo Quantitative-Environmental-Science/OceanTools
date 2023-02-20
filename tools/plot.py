@@ -18,11 +18,17 @@ def boxes(time, vars, *boxes, axs=None, label=None, **kwargs):
     **kwargs
         Keyword arguments to pass to the pyplot.plot function.
     """
+    if isinstance(vars, str):
+        vars = [vars]
+        
     if axs is None:
         fig, axs = plt.subplots(len(vars), 1, figsize=(8, 1.7 * len(vars)), sharex=True, constrained_layout=True)
     else:
         fig = axs[0].figure
 
+    if hasattr(axs, 'plot'):
+        axs = [axs]
+        
     cdict = {
         'deep': 'tab:grey',
         'hilat': 'tab:blue',
@@ -53,3 +59,4 @@ def boxes(time, vars, *boxes, axs=None, label=None, **kwargs):
     axs[-1].set_xlim(0, max(time))
     
     return fig, axs
+
