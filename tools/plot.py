@@ -47,11 +47,19 @@ def boxes(time, vars, *boxes, axs=None, label=None, **kwargs):
             
         ax.set_ylabel(var)
     
+    # box labels, if they're not already there
+    current_labels = axs[-1].get_legend_handles_labels()[1]
+    plot_orig = False
     for box in boxes:
-        axs[-1].plot([], [], color=cdict[box['name']], label=box['name'])
+        if box['name'] not in current_labels:
+            axs[-1].plot([], [], color=cdict[box['name']], label=box['name'])
+        else:
+            plot_orig = True
     axs[-1].legend(fontsize=8)
 
     if label is not None:
+        if plot_orig:
+            axs[-2].plot([], [], color=(.3,.3,.3), label='original')    
         axs[-2].plot([], [], color=(.3,.3,.3), label=label, **kwargs)
         axs[-2].legend(fontsize=8)
 
