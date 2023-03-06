@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-def boxes(time, vars, *boxes, axs=None, label=None, height=0, **kwargs):
+def boxes(time, vars, *boxes, axs=None, label=None, height=1.7, width=8, **kwargs):
     """Plot a set of variables in a set of boxes.
 
     Parameters
@@ -18,6 +18,8 @@ def boxes(time, vars, *boxes, axs=None, label=None, height=0, **kwargs):
         Some custom text to add to the legend.
     height : float, optional
         Height modifier to edit the height of the figure
+    Width : float, optional
+        Width modifier to edit the width of the figure
     **kwargs
         Keyword arguments to pass to the pyplot.plot function.
     """
@@ -25,7 +27,7 @@ def boxes(time, vars, *boxes, axs=None, label=None, height=0, **kwargs):
         vars = [vars]
 
     if axs is None:
-        fig, axs = plt.subplots(len(vars), 1, figsize=(8, (1.7 * len(vars)) + height), sharex=True,
+        fig, axs = plt.subplots(len(vars), 1, figsize=(width, (height * len(vars))), sharex=True,
                                 constrained_layout=True)
     else:
         fig = axs[0].figure
