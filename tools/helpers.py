@@ -1,5 +1,3 @@
-import copy
-
 import numpy as np
 
 def get_last_values(*boxes):
