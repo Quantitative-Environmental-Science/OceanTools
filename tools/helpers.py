@@ -1,3 +1,5 @@
+import copy
+
 import numpy as np
 
 def get_last_values(*boxes):
@@ -31,7 +33,7 @@ def copy_dicts(dicts):
 
     Parameters
     ----------
-    dicts : array-like
+    dicts : array-like or dict
         array of dictionaries to be copied
 
     Returns
@@ -44,8 +46,13 @@ def copy_dicts(dicts):
         return dicts.copy()
 
     else:
-        new_dicts = []
-        for dictionary in dicts:
-            new_dicts.append(dictionary.copy())
+        try:
+            new_dicts = []
+            for dictionary in dicts:
+                new_dicts.append(dictionary.copy())
 
-        return new_dicts
+            return new_dicts
+
+        except AttributeError:
+            print('Dictionaries could not be copied, output was the original dicts')
+            return dicts
