@@ -24,3 +24,28 @@ def get_last_values(*boxes):
             out[box['name']] = get_last_values(box)
     
     return out
+
+
+def copy_dicts(dicts):
+    """Returns a copy of each dictionary in the list (or of an individual dictionary)
+
+    Parameters
+    ----------
+    dicts : array-like
+        array of dictionaries to be copied
+
+    Returns
+    -------
+    new_dicts : list
+        list of copied dictionaries
+    """
+
+    if type(dicts) == dict:
+        return dicts.copy()
+
+    else:
+        new_dicts = []
+        for dictionary in dicts:
+            new_dicts.append(dictionary.copy())
+
+        return new_dicts
