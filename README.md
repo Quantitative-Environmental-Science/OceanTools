@@ -1,2 +1,3 @@
 # OceanTools
-Tools for ocean carbon practical
+
+Tools for QES Ocean Carbon practical.
