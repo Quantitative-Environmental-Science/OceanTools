@@ -55,7 +55,7 @@ def modify_dicts(dicts, modifiers):
 
         Parameters
         ----------
-        d : dict or array-like
+        dicts : dict or array-like
             Dictionary or list of dictionaries to be modified
         modifiers : Modifier or array-like
             Modifier or list of modifiers to be applied to the dictionaries
@@ -138,3 +138,34 @@ def copy_dicts(dicts):
         except AttributeError:
             print('Dictionaries could not be copied, output was the original dicts')
             return dicts
+
+
+def add_emissions(dicts, time, start, stop, value):
+    """Adds emissions to the atmosphere dictionary
+
+        Parameters
+        ----------
+        dicts : array-like or dict
+            array of dictionaries containing atmos
+        time : array
+            time axis of the model
+        start : float
+            year to start emissions
+        stop : float
+            year to stop emissions
+        value : float
+            emissions per year in GtC
+
+        Returns
+        -------
+        dicts : list
+            list of dictionaries, with emissions added
+        """
+    for i, d in enumerate(dicts):
+        if d['name'] == 'atmos':
+            emit_atmos = d.copy()  # create a copy of the original atmosphere input dictionary
+            emit_atmos['GtC_emissions'] = np.zeros(time.shape)  # creat an array to hold the emission scenario
+            emit_atmos['GtC_emissions'][(time > start) & (time <= stop)] = value  # set emissions
+            dicts[i] = emit_atmos  # insert the modified dict back into dicts
+    return dicts
+
