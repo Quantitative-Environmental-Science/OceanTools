@@ -164,7 +164,8 @@ def add_emissions(dicts, time, start, stop, value):
     for i, d in enumerate(dicts):
         if d['name'] == 'atmos':
             emit_atmos = d.copy()  # create a copy of the original atmosphere input dictionary
-            emit_atmos['GtC_emissions'] = np.zeros(time.shape)  # creat an array to hold the emission scenario
+            if type(emit_atmos['GtC_emissions']) == float:
+                emit_atmos['GtC_emissions'] = np.zeros(time.shape)  # creat an array to hold the emission scenario
             emit_atmos['GtC_emissions'][(time > start) & (time <= stop)] = value  # set emissions
             dicts[i] = emit_atmos  # insert the modified dict back into dicts
     return dicts
