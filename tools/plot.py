@@ -63,12 +63,14 @@ def boxes(time, vars, *boxes, axs=None, label=None, height=1.7, width=8, **kwarg
             plot_orig = True
     axs[-1].legend(fontsize=8)
 
-    if (label is not None) and len(axs) > 1:
-        current_labels = axs[-2].get_legend_handles_labels()[1]
-        if plot_orig and 'original' not in current_labels:
-            axs[-2].plot([], [], color=(.3, .3, .3), label='original')
-        axs[-2].plot([], [], color=(.3, .3, .3), label=label, **kwargs)
-        axs[-2].legend(fontsize=8)
+    if label is not None:
+        index = -1 if len(axs) == 1 else -2
+
+        current_labels = axs[index].get_legend_handles_labels()[1]
+        if plot_orig and 'Original Model' not in current_labels:
+            axs[index].plot([], [], color=(.3, .3, .3), label='Original Model')
+        axs[index].plot([], [], color=(.3, .3, .3), label=label, **kwargs)
+        axs[index].legend(fontsize=8)
 
     axs[-1].set_xlabel('time')
     axs[-1].set_xlim(0, max(time))
