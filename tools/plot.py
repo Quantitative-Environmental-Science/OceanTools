@@ -72,7 +72,7 @@ def boxes(time, vars, *boxes, axs=None, label=None, height=1.7, width=8, **kwarg
         axs[index].plot([], [], color=(.3, .3, .3), label=label, **kwargs)
         axs[index].legend(fontsize=8)
 
-    axs[-1].set_xlabel('time')
+    axs[-1].set_xlabel('Time (Years)')
     axs[-1].set_xlim(0, max(time))
 
     return fig, axs
