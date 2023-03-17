@@ -31,9 +31,17 @@ def boxes(time, vars, *boxes, axs=None, label=None, height=1.7, width=8, **kwarg
                                 constrained_layout=True)
     else:
         fig = axs[0].figure
-
+        
     if hasattr(axs, 'plot'):
         axs = [axs]
+
+    if not hasattr(fig, 'n_layers'):
+        fig.n_layers = 0
+        fig.box_labels = []
+        fig.line_labels = []
+    
+    # number of panels
+    n_plots = len(axs)
 
     cdict = {
         'deep': 'tab:grey',
@@ -53,31 +61,39 @@ def boxes(time, vars, *boxes, axs=None, label=None, height=1.7, width=8, **kwarg
 
         ax.set_ylabel(var)
 
+    
+    
     # box labels, if they're not already there
-    current_labels = axs[-1].get_legend_handles_labels()[1]
-    plot_orig = False
-    for box in boxes:
+    if fig.n_layers == 0:
+        for box in boxes:
+            line = axs[-1].plot([], [], color=cdict[box['name']], label=box['name'])
+            fig.box_labels += line
+    else:
+        current_labels = axs[-1].get_legend_handles_labels()[1]
         if box['name'] not in current_labels:
-            axs[-1].plot([], [], color=cdict[box['name']], label=box['name'])
-        else:
-            plot_orig = True
+            line = axs[-1].plot([], [], color=cdict[box['name']], label=box['name'])
+            fig.box_labels += line
     axs[-1].legend(fontsize=8)
 
-    if (label is not None):
-        if len(axs) > 1:
-            current_labels = axs[-2].get_legend_handles_labels()[1]
-            if plot_orig and 'original' not in current_labels:
-                axs[-2].plot([], [], color=(.3, .3, .3), label='original')
-            axs[-2].plot([], [], color=(.3, .3, .3), label=label, **kwargs)
-            axs[-2].legend(fontsize=8)
-        else:
-            current_labels = axs[-1].get_legend_handles_labels()[1]
-            if plot_orig and 'original' not in current_labels:
-                axs[-1].plot([], [], color=(.3, .3, .3), label='original')
-            axs[-1].plot([], [], color=(.3, .3, .3), label=label, **kwargs)
-            axs[-1].legend(fontsize=8)
+    # line labels
+    if n_plots == 1:
+        label_ax = axs[-1]
+    else:
+        label_ax = axs[-2]
 
+    if (fig.n_layers > 0) and (len(fig.line_labels) == 0):
+        line = label_ax.plot([], [], color=(.3, .3, .3), label='original')
+        fig.line_labels += line
+        
+    if label is not None:
+        line = label_ax.plot([], [], color=(.3, .3, .3), label=label, **kwargs)
+        fig.line_labels += line
+        
+        label_ax.legend(fontsize=8)
+    
     axs[-1].set_xlabel('time')
     axs[-1].set_xlim(0, max(time))
 
+    fig.n_layers += 1
+    
     return fig, axs
