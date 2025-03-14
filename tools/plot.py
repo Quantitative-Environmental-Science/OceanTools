@@ -55,7 +55,10 @@ def boxes(time, vars, *boxes, axs=None, label=None, height=1.7, width=8, **kwarg
             if var in box:
                 boxname = box['name']
                 if var in box:
-                    ax.plot(time, box[var], color=cdict[boxname], **kwargs)
+                    try:
+                        ax.plot(time, box[var], color=cdict[boxname], **kwargs)
+                    except Exception as e:
+                        raise ValueError(f'For variable {var}, plotting failed with error: {str(e)}')
 
         ax.set_ylabel(var)
 
